@@ -1,12 +1,10 @@
-import express, {
-  Express,
-  Request,
-  Response,
-} from 'express';
-import dotenv from 'dotenv';
+import express, { Express } from 'express';
 import { DataSource } from 'typeorm';
-import cors from 'cors';
+import { Task } from './src/tasks/tasks.entity';
 import bodyParser from 'body-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { tasksRouter } from './src/tasks/tasks.router';
 
 // instantiate express app
 const app: Express = express();
@@ -14,7 +12,6 @@ dotenv.config();
 
 // parse request body
 app.use(bodyParser.json());
-
 // CORS install
 app.use(cors());
 
@@ -26,17 +23,14 @@ export const AppDataSource = new DataSource({
   username: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DB,
+  entities: [Task],
   synchronize: true,
 });
 
 // define server port
 const port = process.env.PORT;
 
-// get method
-app.get('/', (req: Request, res: Response) => {
-  res.send('halo');
-});
-
+// Initialize with data source
 AppDataSource.initialize()
   .then(() => {
     // listen to the port
@@ -49,3 +43,6 @@ AppDataSource.initialize()
       err,
     );
   });
+
+// On default route, add taskRouter
+app.use('/', tasksRouter);
