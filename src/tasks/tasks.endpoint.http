@@ -1,3 +1,15 @@
 ### Fetch all tasks
 GET http://localhost:8000/tasks
 Content-Type: "application/json"
+
+### Create a new task
+POST http://localhost:8000/tasks
+Content-Type: "application/json"
+
+{
+  "title": "this is title",
+  "date": "21-01-21",
+  "description": "this is description",
+  "priority" : "normal",
+  "status" : "todo"
+}

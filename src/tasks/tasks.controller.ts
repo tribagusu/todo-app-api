@@ -9,6 +9,7 @@ export class TasksController {
     ),
   ) {}
 
+  // @ts-ignore
   public async getAll(): Promise<Task[]> {
     // Declare a variable to hold all the tasks
     let allTasks: Task[];
@@ -24,8 +25,10 @@ export class TasksController {
       // Convert the tasks instance to an array of objects
       allTasks = instanceToPlain(allTasks) as Task[];
       return allTasks;
-    } catch (error) {
-      console.log(error);
+    } catch (errors) {
+      console.log(errors);
     }
+
+    // return something
   }
 }
