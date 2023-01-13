@@ -6,7 +6,7 @@ export const createValidator: ValidationChain[] = [
   body('title')
     .not()
     .isEmpty()
-    .withMessage('The task title mandatory')
+    .withMessage('The task title is mandatory')
     .trim()
     .isString()
     .withMessage('Title needs to be in text format'),
