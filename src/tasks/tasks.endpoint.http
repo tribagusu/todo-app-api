@@ -7,9 +7,9 @@ POST http://localhost:8000/tasks
 Content-Type: "application/json"
 
 {
-  "title": "this is title",
-  "date": "21-01-21",
+  "title": "this is title 2",
+  "date": "22-02-22",
   "description": "this is description",
-  "priority" : "normal",
+  "priority" : "high",
   "status" : "todo"
 }
