@@ -1,7 +1,6 @@
 import express, { Express } from 'express';
 import { DataSource } from 'typeorm';
 import { Task } from './src/tasks/tasks.entity';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { tasksRouter } from './src/tasks/tasks.router';
@@ -11,7 +10,7 @@ const app: Express = express();
 dotenv.config();
 
 // parse request body
-app.use(bodyParser.json());
+app.use(express.json());
 // CORS install
 app.use(cors());
 
